@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экскурсии в Москве</title>
+    <style>
+        /* Основные стили */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Шапка сайта поверх изображения */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 100px; /* Отступ для фиксированного header */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            padding-top: 20px; /* Дополнительный отступ */
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 20px;
+        }
+
+        .excursion-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .excursion-main {
+            display: flex;
+            padding: 20px;
+        }
+
+        .excursion-map {
+            flex: 1;
+            min-height: 300px;
+            background-color: #eee;
+            margin-right: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .excursion-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .excursion-title {
+            font-size: 24px;
+            color: #222;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .excursion-details {
+            margin-bottom: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .detail-icon {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .excursion-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 0 20px 20px;
+        }
+
+        .gallery-image {
+            height: 100px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        .more-info {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: auto;
+            padding: 0 20px 20px;
+        }
+
+        .more-info::after {
+            content: " →";
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        footer {
+            background-color: #3E4B82;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .footer-section h3 {
+            border-bottom: 1px solid #777;
+            padding-bottom: 10px;
+        }
+
+        .support-text {
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .excursion-main {
+                flex-direction: column;
+            }
+            
+            .excursion-map {
+                margin-right: 0;
+                margin-bottom: 20px;
+                min-height: 200px;
+            }
+            
+            .excursion-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .main-content {
+                padding-top: 150px; /* Больший отступ для мобильных */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" width="150" alt="Логотип">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Index.html">Жизнь после СВО</a></li>
+                <li><a href="#">Герои</a></li>
+                <li><a href="naviga.html">Навигация</a></li>
+                <li><a href="#">Новости</a></li>
+                <li><a href="#">Искусство</a></li>
+                <li><a href="pomosh.html">Психологическая помощь</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="main-content">
+        <div class="container">
+            <h1>Экскурсии в Москве</h1>
+            
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <!-- Маршрут 1 -->
+                    <div class="carousel-item">
+                        <div class="excursion-card">
+                            <div class="excursion-main">
+                                <div class="excursion-map">
+                                    <img src="images/map1.jpg" alt="Карта маршрута Огни Столицы" class="map-placeholder">
+                                </div>
+                                <div class="excursion-info">
+                                    <h2 class="excursion-title">Огни Столицы</h2>
+                                    <div class="excursion-details">
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/bus.png" alt="Транспорт" width="20"></span>
+                                            На автобусе
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/time.png" alt="Длительность" width="20"></span>
+                                            3 часа + 1,5 час самостоятельная прогулка
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/ticket.png" alt="Билеты" width="20"></span>
+                                            Электронный/бумажный билет
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/language.png" alt="Языки" width="20"></span>
+                                            Русский язык и переводчик по просьбе
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="excursion-gallery">
+                                <img src="images/lights1.jpg" alt="Фото 1" class="gallery-image">
+                                <img src="images/lights2.jpg" alt="Фото 2" class="gallery-image">
+                                <img src="images/lights3.jpg" alt="Фото 3" class="gallery-image">
+                                <img src="images/lights4.jpg" alt="Фото 4" class="gallery-image">
+                            </div>
+                            <a href="#" class="more-info">Больше информации</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Маршрут 2 -->
+                    <div class="carousel-item">
+                        <div class="excursion-card">
+                            <div class="excursion-main">
+                                <div class="excursion-map">
+                                    <img src="images/map2.jpg" alt="Карта маршрута Исторический центр" class="map-placeholder">
+                                </div>
+                                <div class="excursion-info">
+                                    <h2 class="excursion-title">Исторический центр</h2>
+                                    <div class="excursion-details">
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/walk.png" alt="Тип" width="20"></span>
+                                            Пешеходная экскурсия
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/time.png" alt="Длительность" width="20"></span>
+                                            2,5 часа
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/ticket.png" alt="Билеты" width="20"></span>
+                                            Электронный билет
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="detail-icon"><img src="icons/language.png" alt="Языки" width="20"></span>
+                                            Русский и английский языки
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="excursion-gallery">
+                                <img src="images/history1.jpg" alt="Фото 1" class="gallery-image">
+                                <img src="images/history2.jpg" alt="Фото 2" class="gallery-image">
+                                <img src="images/history3.jpg" alt="Фото 3" class="gallery-image">
+                                <img src="images/history4.jpg" alt="Фото 4" class="gallery-image">
+                            </div>
+                            <a href="#" class="more-info">Больше информации</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="control-btn prev">←</button>
+                    <button class="control-btn next">→</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Телефон: +7 (123) 456-78-90</p>
+                <p>Email: info@example.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p>Адрес: г. Москва, ул. Примерная, 123</p>
+                <p>Часы работы: 9:00 - 18:00</p>
+            </div>
+        </div>
+        
+        <div class="support-text">
+            Сделано при поддержке [Название организации]
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            let currentIndex = 0;
+            const itemCount = items.length;
+            
+            function updateCarousel() {
+                carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % itemCount;
+                updateCarousel();
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+                updateCarousel();
+            });
+            
+            // Автоматическая смена каждые 5 секунд
+            setInterval(function() {
+                currentIndex = (currentIndex + 1) % itemCount;
+                updateCarousel();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

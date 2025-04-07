@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Психологическая помощь онлайн</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            filter: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .main-content {
+            flex: 1;
+            padding-top: 100px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 40px;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .text-content {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        h1 {
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .steps {
+            margin-top: 30px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background-color: #0066cc;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        .step-text {
+            font-size: 18px;
+        }
+        
+        .image-container {
+            width: 350px;
+            flex-shrink: 0;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #eee;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        /* Подвал на всю ширину */
+        footer {
+            background-color: #3E4B82;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .footer-column h3 {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .support-text {
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .text-content {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .image-container {
+                width: 100%;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .main-content {
+                padding-top: 150px;
+            }
+            
+            .footer-columns {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .step-number {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" width="150" alt="Логотип">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Index.html">Жизнь после СВО</a></li>
+                <li><a href="#">Герои</a></li>
+                <li><a href="naviga.html">Навигация</a></li>
+                <li><a href="#">Новости</a></li>
+                <li><a href="#">Искусство</a></li>
+                <li><a href="pomosh.html">Психологическая помощь</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Основной контент -->
+    <div class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h1>Нужна помощь психолога онлайн?</h1>
+                    <p>Наш сервис предоставляет профессиональную психологическую поддержку в любое время.</p>
+                    
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-text">Перейди по ссылке</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-text">Выбери сферу помощи</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-text">Получи нужную информацию</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="image-container">
+                    <div class="image-placeholder">
+                        [Ваша картинка]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Подвал на всю ширину -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <p>Телефон: +7 (123) 456-78-90</p>
+                    <p>Email: info@example.com</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Адрес</h3>
+                    <p>г. Москва, ул. Примерная, 123</p>
+                    <p>Часы работы: 9:00 - 18:00</p>
+                </div>
+            </div>
+            
+            <div class="support-text">
+                Сделано при поддержке [Название организации]
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
